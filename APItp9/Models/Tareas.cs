@@ -4,7 +4,7 @@ public class Tarea{
     private string? nombreTarea;
     private string? descripcionTarea;
     private string? color;
-    //private EstadoTarea Estado;
+    private EstadoTarea Estado;
     private int? IdUsuarioAsignado;
 
 }
