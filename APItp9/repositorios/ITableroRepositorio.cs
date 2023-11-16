@@ -1,4 +1,4 @@
-public interface IdTableroRepositorio{
+public interface ITableroRepositorio{
     public Tablero CrearTablero();
     public Tablero ModificarTablero(int idTablero);
     public Tablero DetallesTablero(int idTablero);
