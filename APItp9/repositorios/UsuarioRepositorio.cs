@@ -15,7 +15,7 @@ namespace TODO.Repositorio{
                 connection.Open();
                 var comando = new SQLiteCommand(query, connection);
 
-                comando.Parameters.Add(new SQLiteParameter("", nuevoUsuario.NombreUsuario));
+                comando.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", nuevoUsuario.NombreUsuario));
 
                 comando.ExecuteNonQuery();
                 connection.Close();
@@ -26,7 +26,7 @@ namespace TODO.Repositorio{
             SQLiteConnection connection = new SQLiteConnection(cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             
-            command.CommandText = $"UPDATE Usuario SET name = '{usuario.NombreUsuario}' WHERE id = '{usuario.IdUsuario}';";
+            command.CommandText = $"UPDATE Usuario SET nombre_de_usuario = '{usuario.NombreUsuario}' WHERE id = '{usuario.IdUsuario}';";
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
