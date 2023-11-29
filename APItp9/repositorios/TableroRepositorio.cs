@@ -8,7 +8,7 @@ namespace TODO.Repositorio{
         private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
  
         public Tablero CrearTablero(Tablero NuevoTablero){
-            var query = $"INSERT INTO Usuario (nombre_de_usuario) VALUES (@nombre_de_usuario)";
+            var query = $"INSERT INTO Tablero (id_usuario_propietario, nombre, descripcion) VALUES (@id_usuario_propietario, @nombre, @descripcion)";
             using(SQLiteConnection connection = new SQLiteConnection(cadenaConexion)){
                 
                 connection.Open();
