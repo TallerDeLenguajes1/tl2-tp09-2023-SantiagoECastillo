@@ -1,6 +1,7 @@
 namespace TODO.Models{
     public class Tarea{
         private int idTarea;
+        private int idTablero;
         private string? nombreTarea;
         private string? descripcionTarea;
         private string? color;
@@ -13,6 +14,7 @@ namespace TODO.Models{
         public string? Color { get => color; set => color = value; }
         public EstadoTarea Estado1 { get => Estado; set => Estado = value; }
         public int? IdUsuarioAsignado1 { get => IdUsuarioAsignado; set => IdUsuarioAsignado = value; }
+        public int IdTablero { get => idTablero; set => idTablero = value; }
     }
 
     public enum EstadoTarea{
