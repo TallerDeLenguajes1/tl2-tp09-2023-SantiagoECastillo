@@ -1,4 +1,5 @@
-using kanban;
+using TODO.Models;
+using TODO.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kanban.controllers
@@ -8,43 +9,43 @@ namespace kanban.controllers
     [Route("[controller]")]
     public class TableroControllers : ControllerBase{
 
-        private ITableroRepositorio TableroRepositorio;
-        private readonly ILogger<UsuarioController> _logger;
+        private ITableroRepositorio tableroRepositorio;
+        private readonly ILogger<TableroControllers> _logger;
         
-        public UsuarioController(ILogger<UsuarioController> logger)
+        public TableroControllers(ILogger<TableroControllers> logger)
         {
             _logger = logger;
-            tableroRepositorio = new tableroRepositorio();
+            tableroRepositorio = new TableroRepositorio();
         }
         
         [HttpGet]
-        public List<Tablero> obtenerTableros(){
+        public List<Tablero> ObtenerTableros(){
             return tableroRepositorio.ListarTableros();
         }
 
         [HttpGet]
         [Route("api/tableros/usuario/{id}")]
-        public List<Tablero> obtenerTablero(int id){
+        public List<Tablero> ObtenerTablero(int id){
             return tableroRepositorio.ListarTablerosPorUsuario(id);
         }
 
         [HttpPost]
         [Route("api/tableros/agregar")]
-        public IActionResult agregarTablero(Tablero tablero){
+        public IActionResult AgregarTablero(Tablero tablero){
             tableroRepositorio.CrearTablero(tablero);
             return Ok("Tablero creado con exito!");
         }
 
         [HttpPut]
         [Route("api/tableros/actualizar")]
-        public  IActionResult actualizarTablero(int id, Tablero tablero){
+        public  IActionResult ActualizarTablero(int id, Tablero tablero){
             tableroRepositorio.ModificarTablero(id, tablero);
             return Ok("Tablero modificado");
         }     
 
         [HttpDelete]
         [Route("api/tableros/eliminar")]
-        public IActionResult eliminarTablero(int idTablero){
+        public IActionResult EliminarTablero(int idTablero){
             tableroRepositorio.EliminarTablero(idTablero);
             return Ok("Tablero eliminado");
         }
