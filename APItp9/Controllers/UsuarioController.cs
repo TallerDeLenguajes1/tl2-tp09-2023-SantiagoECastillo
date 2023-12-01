@@ -1,48 +1,47 @@
-using kanban;
 using Microsoft.AspNetCore.Mvc;
+using TODO.Models;
+using TODO.Repositorio;
 
-namespace kanban.controllers
+namespace TODO.controllers
 {
-    
     [ApiController]
     [Route("[controller]")]
     public class UsuarioControllers : ControllerBase{
 
         private IUsuarioRepositorio usuarioRepositorio;
-        private readonly ILogger<UsuarioController> _logger;
+        private readonly ILogger<UsuarioControllers> _logger;
         
-        public UsuarioController(ILogger<UsuarioController> logger)
+        public UsuarioControllers(ILogger<UsuarioControllers> logger)
         {
             _logger = logger;
-            usuarioRepositorio = new usuarioRepositorio();
+            usuarioRepositorio = new UsuarioRepositorio();
         }
         
         [HttpGet]
-        public List<Usuario> obtenerUsuarios(){
+        public List<Usuario> ObtenerUsuarios(){
             return usuarioRepositorio.ObtenerTodosUsuarios();
         }
 
         [HttpGet]
         [Route("api/usuarios/{id}")]
-        public Usuario obtener(){
-            return usuarioRepositorio.ObtenerUsuarioPorId();
+        public Usuario Obtener(int idUsuario){
+            return usuarioRepositorio.ObtenerUsuarioPorId(idUsuario);
         }
 
         [HttpPost]
         [Route("api/usuarios/agregar")]
-        public IActionResult agregarUsuario(){
+        public IActionResult AgregarUsuario(Usuario usuario){
             usuarioRepositorio.CrearUsuario(usuario);
             return Ok("Usuario creado con exito!");
         }
 
         [HttpPut]
         [Route("api/usuario/actualizar")]
-        public  IActionResult actualizarUsuario(){
-            usuarioRepositorio.ModificarUsuario();
+        public  IActionResult ActualizarUsuario(Usuario usuario){
+            usuarioRepositorio.ModificarUsuario(usuario);
             return Ok("Usuario modificado");
-        }     
-
-        
+        }        
+    
     }
 
 }
